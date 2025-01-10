@@ -1,1 +1,174 @@
-/home/Main/Documents/UDE/Sem-3/Logik/main.tex
+\documentclass[11pt, a4paper]{article}
+
+\input{preamble.tex}
+
+\usepackage{float}
+\usepackage{fancyhdr}
+
+\begin{document}
+
+%\fancyhead[L]{Logik}
+\setlength{\headheight}{14pt}
+
+\title{Logik}
+\author{Jovan Petrov}
+\maketitle
+
+\pagestyle{fancy}
+
+\renewcommand{\AA}{\mathfrak{A}}
+\newcommand{\BB}{\mathfrak{B}}
+\newcommand{\CC}{\mathfrak{C}}
+
+\newcommand{\Bund}{(\text{B}\land)}
+\newcommand{\Boder}{(\text{B}\lor)}
+\newcommand{\Bsub}{(\text{B}\rightarrow)}
+
+\newcommand{\Eund}{(\text{E}\land)}
+\newcommand{\Eoder}{(\text{E}\lor)}
+\newcommand{\Esub}{(\text{E}\rightarrow)}
+
+\newcommand{\Prae}[1]{(\text{P}#1)}
+\newcommand{\An}[1]{(\text{A}#1)}
+
+
+\section{Kalkül des natürlichen Schließens}
+
+\subsection{Konjunktion}
+
+\begin{regel}{Konjunktionseinführung}{}
+	$\Eund$: $\AA_L, \BB_{L'} \implies (\AA \land \BB)_{L \cup L'}$		
+\end{regel}
+
+\begin{regel}{Konjunktionsbeseitigung $(1)$}{}
+	$\Bund_1$: $(\AA \land \BB)_{L} \implies \AA_L$		
+\end{regel}
+
+\begin{regel}{Konjunktionsbeseitigung $(1)$}{}
+	$\Bund_2$: $(\AA \land \BB)_{L} \implies \BB_L$		
+\end{regel}
+
+\begin{bsp}(Kommutativität der Konjunktion) \ 
+	Wir zeigen, dass $A \land B \models B \land A$
+	\begin{figure}[h]
+	\centering
+	
+	
+	\begin{tabular}{l r | l l l}
+		$1$ & $A \land B$ &  $\Prae{1}$ & &\\
+		$2$ & $A$ &  $\Bund_1$ & $1$ & $(1)$\\
+		$3$ & $B$ &  $\Bund_2$ & $1$ & $(1)$\\
+		$4$ & $B \land A$ &  $\Eund$ & $2,3$ & $(1)$\\
+	\end{tabular}
+
+	\end{figure}
+
+\end{bsp}
+
+\begin{bsp}(Assoziativität der Konjunktion) \ 
+	Wir zeigen, dass $A \land (B \land C) \models (A \land B) \land C$
+	\begin{figure}[h]
+	\centering
+	
+	
+	\begin{tabular}{l r | l l l}
+		$1$ & $A \land (B \land C)$ &  $\Prae{1}$ & &\\
+		$2$ & $A$ &  $\Bund_1$ & $1$ & $(1)$\\
+		$3$ & $B \land C$ &  $\Bund_2$ & $1$ & $(1)$\\
+		$4$ & $B$ &  $\Bund_1$ & $3$ & $(1)$\\
+		$5$ & $C$ &  $\Bund_2$ & $3$ & $(1)$\\
+		$6$ & $A \land B$ &  $\Eund$ & $2,4$ & $(1)$\\
+		$7$ & $(A \land B) \land C$ &  $\Eund$ & $6,5$ & $(1)$\\
+	\end{tabular}
+
+	\end{figure}
+\end{bsp}
+
+\subsection{Subjunktion}
+
+\begin{regel}{Subjunktionseinführung}{}
+	$\Esub$: $[\AA_i] \dots \BB_L \implies (\AA \rightarrow \BB)_{L \ohne \{i\} }$		
+\end{regel}
+
+\begin{regel}{Subjunktionsbeseitigung/ Modus ponens}{}
+	$\Bsub$: $(\AA \rightarrow \BB)_L , \AA_{L'} \implies \BB_{L \cup L'}$		
+\end{regel}
+
+\begin{bsp}
+	Wir zeigen, dass $A \rightarrow (B \land C) \models A \rightarrow B$
+	\begin{figure}[h]
+	\centering
+	
+	
+	\begin{tabular}{l r | l l l}
+		$1$ & $A \rightarrow (B \land C)$ &  $\Prae{1}$ & &\\
+		$2$ & $A$ &  $\An{2}$ & &\\
+		$3$ & $B \land C$ &  $\Bsub$ & 1,2& (1,2)\\
+		$4$ & $B$ &  $\Bund$ & 3& (1,2)\\
+		$5$ & $A \rightarrow B$ &  $\Esub$ & 4& (1)\\
+	\end{tabular}
+
+	\end{figure}
+\end{bsp}
+
+\begin{bsp}
+	Wir zeigen, dass $A \rightarrow B, B \rightarrow C \models A \rightarrow C$
+	\marginpar{Sollte in Zeile 6 3,5 oder nur 5 stehen?}
+	\begin{figure}[h]
+	\centering
+	
+	
+	\begin{tabular}{l r | l l l}
+		$1$ & $A \rightarrow B$ &  $\Prae{1}$ & &\\
+		$2$ & $B \rightarrow C$ &  $\Prae{2}$ & &\\
+		$3$ & $A$ &  $\An{3}$ & &\\
+		$4$ & $B$ &  $\Bsub$ & 1,3 & (1,3)\\
+		$5$ & $C$ &  $\Bsub$ & 2,4 & (1,2,3)\\
+		$6$ & $A \rightarrow C$ &  $\Esub$ & 3,5 & (1,2)\\
+	\end{tabular}
+
+
+	\end{figure}
+\end{bsp}
+
+\subsection{Disjunktion}
+
+\begin{regel}{Disjunktionseinführung $(1)$}{}
+	$\Eoder$: $\AA_L \implies (\AA \lor \BB)_L$		
+\end{regel}
+
+\begin{regel}{Disjunktionseinführung $(2)$}{}
+	$\Eoder$: $\AA_L \implies (\BB \lor \AA)_L$		
+\end{regel}
+
+
+\begin{regel}{Disjunktionsbeseitigung}{}
+	$\Boder$: $(\AA \lor \BB)_L, [\AA] \dots \CC, [\BB] \dots \CC \implies \CC$		
+\end{regel}
+
+\newpage
+
+\begin{bsp} 
+	Wir zeigen, dass $A \lor B, A \rightarrow C, B \rightarrow C \models C$
+	\begin{figure}[H]
+	\centering
+	
+	
+	\begin{tabular}{l r | l l l}
+		$1$ & $A \lor B$ &  $\Prae{1}$ & &\\
+		$2$ & $A \rightarrow C$ &  $\Prae{2}$ & &\\
+		$3$ & $B \rightarrow C$ &  $\Prae{3}$ & &\\
+		$4$ & $A$ &  $\An{4}$ & &\\
+		$5$ & $B$ &  $\An{5}$ & &\\
+		$6$ & $C$ &  $\Bsub$ & $2,4$ & (2,4)\\
+		$7$ & $C$ &  $\Bsub$ & $3,5$ & (3,5)\\
+		$8$ & $C$ &  $\Boder$ & $1,6,7$ & (1,2,3)\\
+	\end{tabular}
+
+
+	\end{figure}
+\end{bsp}
+
+
+
+\end{document}

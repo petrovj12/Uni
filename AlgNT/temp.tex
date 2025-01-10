@@ -1,0 +1,847 @@
+\documentclass[12pt, a4paper]{article}
+
+\input{preamble.tex}
+
+\usepackage{tikz-cd}
+
+\renewcommand{\phi}{\varphi}
+\newcommand{\BB}{\mathscr{B}}
+
+
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Nm}{Nm}
+\DeclareMathOperator{\FracId}{Frac\;Id}
+\DeclareMathOperator{\disc}{disc}
+\DeclareMathOperator{\covol}{covol}
+\DeclareMathOperator{\Rgez}{\R_{\geq 0}}
+\DeclareMathOperator{\Norm}{N}
+
+\begin{document}
+
+\title{Algebraic Number Theory}
+\author{Lecture Notes}
+\maketitle
+
+
+\tableofcontents
+
+\section{Integral elements}
+
+\begin{Def}{}{}
+	$\phi: A \to B$, $b \in B$ is integral over $A$ iff $\exists f \in A[t]$ 
+	monic with $f(b) = 0$. The ring $B$ is integral over $A$ 
+	if all $b \in B$ are integral over $A$.
+\end{Def}
+
+\begin{ex}
+	$\sqrt{2} \in \Q[\sqrt{2}]$ is integral over $\Z$, $\frac{1}{2} \in \Q$ 
+	is not integral over $\Z$.
+\end{ex}
+
+\begin{prop}{}{}
+	$\phi: A \to B$ then the following are equivalent:
+
+	\begin{enumerate}[label = (\roman*)]
+		\item $b$ is integral over $A$
+		\item $A[b]$ is finitely generated as an $A$-module.
+		\item $A[b] \subset C \subset B$, $C$ is finitely generated as an 
+			$A$-module.
+		\item There exists a faithful $A[b]$-module $M$ finite 
+			as an $A$-module.
+	\end{enumerate}
+\end{prop}
+
+\begin{Def}{}{}
+	$A \subset B$, $\overline{A} = \{b \in B \mid b \text{ integral over } A\} $
+	is called the integral closure of $A$ in $B$.
+\end{Def}
+
+\begin{cor}{}{}
+	$\overline{A}$ is a ring.
+\end{cor}
+
+\begin{prop} {}{}
+ $A \subset B$, $B \subset C$ are integral $\implies A \subset C$ is integral.
+\end{prop}
+
+\begin{cor}{}{}
+	$A \subset B$ then $\overline{\overline{A}} = A$.
+\end{cor}
+
+\textsc{Our objects of study: } $\OK$. It is clearly integrally closed.
+
+\begin{figure}[h]
+\centering
+
+
+\begin{tikzcd}
+	\Q\arrow[r] & K \\
+	\Z\arrow[u]\arrow[r] & \overline{\Z} \arrow[u] =: \OK
+\end{tikzcd}
+\caption{$\OK$}
+\end{figure}
+
+Remark: $A$ is UFD then $A = \overline{A} \subset \Frac(A)$
+
+\begin{proof}
+	Same as for $\Z \subset \Q$.
+\end{proof}
+
+\begin{prop}{}{}
+	$A = \overline{A} \subset K = \Frac(A)$. $L \vert K$ separable field 
+	extension. Then $l \in L$ integral over $A$ $\iff f_l \in A[t]$. 
+\end{prop}
+
+\begin{ex}
+	$K = \Q[\sqrt{5}]$  $\OK = ?$. Let $x = a + b\sqrt{5} \in \OK \subset K$. 
+	Then $f_x = (X-x)(X-\overline{x}) = X^2 - 2aX + a^2 - 5b^2$. 
+	Thus $2a, a^2 - 5b^2 \in \Z$. From this one can calculate that 
+	$\OK = \Q[\frac{1 + \sqrt{5}}{2}] \neq \Q[\sqrt{5}]$.
+\end{ex}
+
+\section{Free A-modules}
+
+\begin{thm}{Structure theorem for finitely generated Abelian groups}{}
+	Any finitely generated $\Z$-module $M$ is isomorphic to $M = \Z^r \oplus 
+	\Z/(d_1) \oplus \dots \oplus$, $d_i \mid d_{i+1}$. In other terms 
+	$M = \Z^r \oplus \bigoplus_i \Z/(p_i^{e_i})$
+\end{thm}
+
+\noindent Construction: $B$ is an $A$-algebra free as an $A$-module. 
+Let $b \in B$. 
+$\tr(b) := \tr(M_b)$, $\Nm(b):=\det(M_b)$ where $M_b$ is the matrix of the multiplication 
+map $\cdot b$. Then $\tr: B \to A$ is additive and $A$-linear and 
+$\Nm: B \to A$ is multiplicative.
+
+\begin{prop}{}{}
+	$L \vert K$ finite extension, $[L:K] = n$. Let $l \in L$ 
+	with minimal polynomial $f_l(x) = x^m - 
+	a_1x^{m-1}+ \dots \pm a_{m}$. Let $s = \frac{n}{m}$. Then 
+	$\tr(l) = sa_1$, $\Nm(l) = a_m^s$.
+\end{prop}
+
+\section{Bilinear forms}
+
+Let $M$ be free as an $A$-module and let $\Psi: M \times M \to A$
+be a bilinear form with Gram-matrix $G = (g_{ij})$, i.e. 
+$g_{ij} = \Psi(e_i, e_j)$. The discriminat of $\Psi$ with respect 
+to the standard basis is $\disc \Psi = \det(G)$.
+Let $B$ be a change-of-basis matrix. Then the Gram-matrix 
+with respect to the new basis is given by $G' = B^t G B$ meaning that
+$\det(G) = \det(B)^2 \det(G)$. This means that usually for rings the 
+determinant of the Gram-matrix is not independent of the chosen basis. 
+However if $A = \Z$, then the discriminant is independent of bases!
+
+For a field extension $L \vert K$ we define $\disc_{L\mid K} := \disc \Tr$, 
+where $\Tr$ is the trace form $\Tr: L \times L \to K$, $(l, l') 
+\mapsto \tr(l \cdot l')$.
+
+\begin{ex}
+	$L = \Q[\sqrt{d}]$, $\mathcal{B} = (1, \sqrt{d})$, $\Tr = 
+	\begin{pmatrix}
+		\tr(1) & \tr(\sqrt{d}) \\
+		\tr(\sqrt{d}) & \tr(\sqrt{d})
+	\end{pmatrix}$. Then $\disc_{L \vert K}(\mathcal{B}) = 4d$.
+\end{ex}
+
+\begin{prop}{}{}
+	$L \vert K$ finite separable extension of degree $n = [L:K]$. Let 
+	$\sigma_i: L \to \overline{L}$ be the embeddings of $L$ in an 
+	algebraically closed field (or even the normal closure of $L$).
+	Then for any $l \in L$, $tr(l) = \sum_{i=1}^{n} \sigma_i{l}$ and 
+	$\Nm(l) = \prod_{i=1}^{n}\sigma_i(l)$.
+\end{prop}
+
+In particular, if $L \vert K$ is Galois, then $\tr(l) = \sum_{\sigma \in 
+\Gal(L\vert K)} \sigma(l)$. 
+
+$\Psi: M \times M \to A$, $\disc(\Psi) = 0 \iff:$ $\Psi$ is degenerate
+	$\iff \Psi(m, \cdot) \equiv 0$ for some $m \neq 0$ $\iff$ $\Psi(\cdot, m) 
+	\equiv 0$ for some $m \neq 0$. We need the trace form to be 
+	non-degenerate for separable $L \vert K$.
+
+
+	\begin{thm}{Dedekind's theorem on the independence of characters}{}
+		Let $K$ be a field, $G$ a group and $\chi_i: G \to K*$ pairwise 
+		different. Then $\{\chi_i\}_{i \in I} $ is linearly independent over $K$.
+	\end{thm}
+
+	\begin{prop}{}{}
+		Let $A = \overline{A} \subset K$ and $B$ be the integral closure of 
+		$A$ in $L$ for a finite field extension $L\vert K$. Then for 
+		any $b \in B$, $\tr_{L \vert K}(b), \Nm_{L \vert K}(b) \in A$. 
+	\end{prop}
+
+	\begin{proof}
+		Since $b \in B$, $\minpol(b) \in A[X]$.
+	\end{proof}
+
+	\begin{prop}{}{}
+		Let $L\vert K$ be a finite separable field extension, $n = [L:K]$. 
+		Let $\sigma_i$ be the embeddings of $L$ in its Galois closure. 
+		For a basis $\mathcal{B} = (l_1, \dots, l_n)$ of $L$ as a 
+		$K$-vector space we have $\disc_{L \vert K}^{\mathcal{B}} = 
+		\det^2((\sigma_i l_j)_{ij}) \neq 0$.
+	\end{prop}
+
+	\begin{proof}
+		$\det(\Tr_{L\vert K}) = \det((\tr(l_il_j)_{ij})) \det((\sum_{k}
+	\sigma_k(l_il_j))_{ij}) = \det((\sum_{k}\sigma_k$ $(l_i) \sigma_k(l_j))) = 
+	\det^2(\sigma_k(l_i)) $. Let $M = (\sigma_kl_j)_{kj}$
+	Suppose $\det M = 0$. Then the rows are linearly dependent, meaning
+	$\sum \lambda_i \sigma_i(l_j) = 0 \forall  j$. Thus $\sum \lambda_i \sigma_i$
+	$\equiv 0$, contradicting Dedekind's theorem on the independence of 
+	characters.
+	\end{proof}
+
+	\begin{thm}{}{}
+		Let $A \subset K$ be integrally closed, $L \vert K$ finite and separable
+		of degree $n$. Then the integral closure $B$ of $A$ in $L$ is a 
+		finitely generated $A$-module of rank $n$. The rank of a module $B$
+		is defined as $\dim_K(K \otimes_A B)$. Furthermore
+		\begin{itemize}
+			\item if $A$ is Noetherian, so is $B$.
+			\item if $A$ is a PID then $B \cong A^{\oplus n}$
+		\end{itemize}
+	\end{thm}
+
+	\begin{cor}{}{}
+		If $A = \Z$, $K \vert \Q$ a finite field extension, then 
+		$\OK = \Z^n$ where $n = [K : \Q]$.
+	\end{cor}
+
+
+	\begin{Def}{}{}
+		A basis of $\OK$ as a $\Z$-module  is called an integral basis 
+		of $\OK$.
+	\end{Def}
+
+	\begin{ex} \
+		\begin{itemize}
+			\item Let $K = \Q[\sqrt{d}]$ and $\mathcal{B} = (1, \sqrt{d})$ 
+				\marginpar{not necessarily an integral basis!} 
+				which is a basis of $K$ consisting of integral elements.
+				Then $\disc_{K\vert Q}^{\mathcal{B}} = \det \begin{pmatrix}
+					\tr(1) & \tr(\sqrt{d}) \\
+					\tr(\sqrt{d})& \tr(d))
+				\end{pmatrix} = 4d$. Let $\mathcal{B}' = (e_1, e_2)$ be an integral 
+				basis of $\OK$. Then the elements of $\mathcal{B}$ can be written as a 
+				linear combinations over $\Z$ of the elements of $\mathcal{B'}$ 
+				meaning $\mathcal{B} = M \mathcal{B}'$ for some matrix $M$. Thus 
+				$4d = \disc^{\mathcal{B}} = \det^2(M) \disc^{\mathcal{B}'}$. 
+				Thus $\det(M) \mid 2$. If $|\det(M)| = 2$, $\Z(\mathcal{B}) 
+				\monom \Z(\mathcal{B}')$ is of index $2$.  Thus 
+				the candidates to be checked for an integral basis 
+				of $\OK$ are $\frac{1}{2}, \frac{\sqrt{d}}{2}, \frac{1+\sqrt{d}{}}{2}$
+				. Since the first two can be easily discarded, we get 
+				$(1, \frac{1+\sqrt{d}}{2})$ as an integral basis.
+			\item Let $\mathcal{B} = (e_1, \dots, e_n)$ be a 
+				basis of $K\vert \Q$ consisting of integral elements.
+				$\disc_{L \vert K}^{\mathcal{B}} = \pm \prod_{i=1}^{n} p_i{e_i}$. 
+				If $e_i < 2$, then $\mathcal{B}$ is automatically 
+				an integral basis. Else if there is only one 
+				prime $p := p_i$ with $e_i = 2$ and the rest $e_j < 2$, 
+				we only have to check elements of the form 
+				$\sum_{i=1}^{n}\frac{n_il_i}{p}$ to find an integral basis.
+		\end{itemize}
+	\end{ex}
+
+	Let $f \in K[X]$ with $f = \prod (X \alpha_i)$ in 
+	$\overline{K}$. $\Delta(f) := \prod_{i < j} 
+	(\alpha_i - \alpha_j))$ which is a polynomial 
+	in the coefficients of $f$. If 
+	$\deg f = 2$ and $f\in \R[X]$. Then if $x_1 = z
+	\in \C \ohne \R$.
+	then $x_2 = \overline{z}$, meaning $z -\overline{z}
+	\in i\R \implies (z-\overline{z})^2 \in \R_{\leq 0
+	}$.
+If $\deg f = 3$ and $\alpha_1$ is real and $\alpha_2$
+is not real, then $\alpha_3 = \overline{\alpha_1}$.
+Thus $\Delta(f) \in i\R$.
+\begin{prop}{}{}
+	$\OK$ is the maximal subring of $K$ finitely 
+	generated as a $\Z$-module.
+\end{prop}
+
+\begin{proof}
+	Let $B \subset K$ be a finitely generated 
+	$\Z$-module. Then by a previous theorem 
+	since $\Z$ is a PID we have $B = \Z^n$.
+	Let $b \in B$. Thus $\Z[b]$ is free and finite as a
+	$\Z$-module meaning that
+	$b$ is integral over $\Z$.
+	Thus $b \in \OK$.
+\end{proof}
+
+\begin{prop}{}{}
+	Let $L\vert K$ be a field extension. 
+	Let $L = K[x]$ and $f_x$ be the minimal 
+	polynomial of $x$ over $K$. With $\deg f = n$
+	and $\BB = (1,x, \dots, x^{n-1})$ basis of 
+	$L$ let $x_i = \sigma_i(x)$ be the different 
+	images of $x$ under embeddings of $L$ in 
+	its algebraic closure. Then 
+	$$\disc_{L \vert K }^\BB = \prod_{i < j} 
+	(x_i-x_j)^2 = (-1)^{n(n-1)/2} \Nm(f'(x))$$
+\end{prop}
+
+\begin{ex}{}{}
+		Let $f = X^n - a$ and $L = K[x] \vert K$
+		with $x^n=a$, $n \neq = 0 \in L$.
+		Then $g = f' = n x^{n-1} =  n\frac{x^n}{x} 
+		= \frac{na}{x}$. Clearly then $y \in 
+		K[x]$. Since $x = \frac{na}{y} \in K[y]$
+		we have $K[x] = K[y]$.
+		We need now only the minimal polynomial 
+		of $y$. $0 = f(x) = f(\frac{na}{y}) = 
+		(\frac{na}{y})^n - a = 0 \implies y^n - n^n a^{n-1} = 0$.
+		Thus $\Nm(y) = \pm n^n \cdot a^{n-1}$ and $\disc^\BB = \pm n^n a^{n-1}$. 
+\end{ex}
+
+\begin{cor}{}{}
+	If $f = X^n + aX + b$ then $\disc(f) = \_\ a^n + \_\ b^{n-1}$.
+\end{cor}
+
+	By a simple calculation \marginpar{meaning calculation to be inserted} 
+	$$\boxed{\disc(f) = (-1)^{{n \choose 2}}(1-n)^{n-1} a^n + (-1)^{n \choose 
+	2}n^nb^{n-1}}$$
+
+	We thus get 
+
+	\begin{align*}
+		\disc(X^2 + aX + b) &= a^2-4b \\
+		\disc(X^3 + aX + b) &= -27b^2-4a^3 \\
+		\disc(X^5 + aX + b) &= 5^5b^4-4^4a^5
+	\end{align*}
+
+	\begin{ex}
+		$\disc(X^5-X-1) = 19 \cdot 5 \cdot 3$ meaning that $\BB = (1, \cdot, x^4)$
+		 is an integral basis of $\OK$.
+	\end{ex}
+
+	\begin{prop}{}{}
+		Let $K\vert \Q$ be a finite field extension and $\BB$ a 
+		$\Q$-basis of $K$. Then $\sgn(\disc^\BB) = (-1)^s$ where 
+		$s$ is the number of non-real embedding of $K$ in $\C$.
+	\end{prop}
+
+	\begin{thm}{Stickelberger's theorem}{}
+		Let $K \vert \Q$ be a finite extension of degree $n$ and $\BB$ be a 
+		basis of integral elements. Then $\disc^\BB \equiv 0, 1 \pmod 4$.
+	\end{thm}
+
+	\section{Dedekind rings}
+
+	\begin{ex}{}{}
+		Let $K \vert \Q$ be a finite extension of degree $n$.
+		Then 
+
+		\begin{itemize}
+			\item $\OK = \Z^n$
+			\item is Noetherian
+			\item is integrally closed
+			\item $\Frac(\OK) = K$.
+		\end{itemize}
+
+		Let $\aa \subset \OK$ be a non-zero ideal. Pick a non-zero element 
+		$a \in \aa$. Then $\Z^n = (a) \subset \aa \subset \OK = \Z^n$ 
+		thus $\aa = \Z^n$ is a free $\Z$-module. This implies that 
+		$\OK/\aa$ is finite. In fact if we take a prime ideal $0 \neq \pp 
+		\subset \OK$ then $\pp$ is maximal since every finite domain is a field.
+	\end{ex}
+
+	\begin{rem}
+		This means that $\OK$ is of (Krull-)dimension 1.	
+	\end{rem}
+
+	\begin{Def}{}{}
+		A ring $A$ is a Dedekind ring if $A$ is an integrally closed, Noetherian 
+		ring of dimension one.
+	\end{Def}
+
+	\begin{ex}
+		$\OK, K[x]$ are Dedekind.
+	\end{ex}
+
+	\begin{Lemma}{}{}
+		Let $A \subset B$ be a ring extension such that $B$ is a finite 
+		$A$-module. Then $A$ is a field $\iff$ $B$ is a field.
+	\end{Lemma}
+
+	\begin{prop}{}{}
+		Let $A \subset K := \Frac(A)$ be a Dedekind ring and $L\vert K$ be a 
+		finite separable field extension. Then the integral closue $
+		B=\overline{A}\subset L$ is also a Dedekind ring. 
+	\end{prop}
+
+	\marginpar{\color{red} Section on local properties missing}
+
+	\section{Valuations and DVR's}
+
+	\begin{Def}{}{}
+		A valuation $v$ on a field $K$ is a group homomorphism $v: K^{*} \to G$
+		where $G$ is a totally ordered Abelian group satisfying $v(\lambda 
+		+ \mu) \geq \min(v(\lambda), v(\mu ))$. A valuation is discrete 
+		is $G = \Z$. 
+	\end{Def}
+
+	\begin{rem}
+		We sometimes assume that $v: K^{*} \to \Z$ is surjective.
+	\end{rem}
+
+	\begin{Def}{}{}
+		A domain $A$ is a discrete valuation ring (DVR) if $A = v^{-1}(\N_{\geq 0}
+		)$ 
+		for some discrete valuation on $\Frac(A)$.
+	\end{Def}
+	\begin{ex}
+		Let $K = \Q$ and fix a prime number $p$. Then for $\frac{a}{b} = 
+		p^m \frac{\overline{a}}{\overline{b}}$ with $(\overline{a}, \overline{b}) 
+		= (\overline{a}, p) = (\overline{b}, p) = 1$ we assign $v_p(\frac{a}{b}) 
+		= m$. This is a discrete valuation. Its DVR is $v_p^{-1}(\N) = 
+		\{\frac{a}{b} \mid p \nmid b\} = \Z_{(p)} $.
+	\end{ex}
+
+	\begin{prop}{}{}
+		Let $v: K^* \to \Z$ be a valuation and $A = v^{-1}(\N)$. Let 
+		$t \in v^{-1}(1)$.
+
+		\begin{enumerate}[label = (\roman*)]
+			\item $A$ is noetherian
+			\item $m = t$ is the only maximal ideal
+			\item $\aa \in A$ ideal then $\aa = (t^n)$.
+			\item $A$ is integrally closed
+		\end{enumerate}
+	\end{prop}
+
+	\begin{thm}{}{}
+		Let $(A, \mm)$ be a local Dedekind domain. Then $A$ is a DVR.	
+	\end{thm}
+
+	\begin{rem}
+		Let $A$ be a Dedekind ring and $\mm \subset A$ maximal. Then 
+		$A_\mm$ is a local Dedekind ring $\implies A_\mm$ is a DVR.
+	\end{rem}
+
+	\begin{thm}{}{}
+		Let $A \subset K$ be a Dedekind ring, and $\aa \subset A$ be an ideal.	
+		Then $\aa = \prod_{i=1}^{n} \mm_i^{e_i}$. This product is unique upto refactoring.
+	\end{thm}
+
+	\begin{Lemma}{}{}
+		Let $A$ be a Dedekind ring, then any ideal $\aa \subset A$ contains a product 
+		of maximal ideals.
+	\end{Lemma}
+
+	\begin{Lemma}{}{}
+		Let $A$ be a ring $\mm \subset A$ maximal. Let $\mm_\mm$ be the maximal ideal 
+		of the local ring $A_\mm = (A \ohne \mm)^{-1}A$.
+		Then for any $n \in \N$ 
+		$A/\mm^n \cong A_\mm/\mm_\mm^n$.
+	\end{Lemma}
+
+	\section{Projective modules over Dedekind rings}
+
+	\begin{Def}{}{}
+		$M \in \Mod(A)$	is \emph{projective} if for every modules $N$ and $N^*$ 
+		with a surjection $\pi: N \epim N^*$ and homomorphism $\alpha: M \to N^*$ there 
+		exists a so called \emph{lift} $\tilde{\alpha}: M \to N$ such that 
+		$\alpha = \pi \circ \tilde\alpha$.
+	\end{Def}
+
+	\begin{ex} \
+		\begin{itemize}
+			\item $M = A^n$ is projective.
+			\item $M$ is projective $\implies$ $M \oplus M'$ is free for some $M'$.
+		\end{itemize}	
+	\end{ex}
+
+	\begin{cor}{}{}
+		$0 \neq \aa \subset A$ ideal is a Dedekind ring. Then $\aa$ is projective 
+		as an $A$-module.
+	\end{cor}
+
+	\begin{cor}{Existence of inverse}{}
+		For any $\aa \neq 0$ there exists an ideal $\bb$ such that $\aa \bb = (c)$ for 
+		some $c \in A$.
+	\end{cor} 
+
+	\section{Ideal class group}
+
+	\begin{Def}{}{}
+		A fractional ideal is finitely generated $A$-module in $K = \Frac A$.	
+	\end{Def}
+
+	\begin{rem}{}{}
+		$M = \langle \frac{a_i}{s_i}\rangle$. Let $s = \prod_{i=1}^{N} a_i$. 
+		Then $sM = \langle a_i \rangle = \aa$ is an ideal. Thus 
+		all fractional ideals are of the from $\frac{1}{s} \aa$ for some ideal $\aa$.
+	\end{rem}
+
+	\begin{rem}{}{}
+		Let $\lambda, \mu \in K^*$.	Define $(\lambda) = A\lambda$. 
+		Then $(\lambda) = (\mu) \iff \mu \in (\lambda) \land \lambda \in (\mu)
+		\iff \lambda = u \mu$ for some unit $u$.
+	\end{rem}
+
+	\begin{Def}{Ideal class group}{}
+		Define the \emph{ideal class group} $\Cl_K$ through the following 
+		exact sequence $0 \to A^* \to K^* \to \FracId(A) \to \Cl_K \to 0$, 
+		where $\FracId$ is the set of all fractional ideals. Then $\Cl_K$ is a group.
+	\end{Def}
+
+
+	\begin{Def}{}{}
+		Let $A \subset K = \Frac A$ be a Dedekind ring and $L \vert K$ be 
+		a finite field extension. Let $B$ be the integral closure of $A$ in 
+		$L$. Then $B$ is Dedekind. Let $\pp$ be a prime ideal of $A$. 
+		Then $\pp^e = \prod_{i=1}^{g} \pp_i^{e_i}$. The $e_i$ are called 
+		the \emph{ramification index} of $\pp_i$. $f_i = [B/\pp_i : A/\pp]$ 
+		is called the \emph{inertial degree}.
+	\end{Def}
+
+	\begin{thm}{}{}
+		$n = \sum_{i=1}^{g} e_if_i$. If $L \vert K$ is Galois then 
+		the Galois group $G$ acts transitively on the prime ideals 
+		$\pp_i$. We then have $e_i = e$, $f_i = f$ for all $i$ and 
+		thus $n =efg$.
+	\end{thm}
+
+	\begin{prop}{}{}
+		Let $A \subset K$ be Dedekind.
+		\begin{itemize}
+			\item $\aa \subset A$ is projective
+			\item $M$ is projective $\implies M \cong A^{n-1} \oplus \aa$.
+			\item $A^{n-1}\oplus \aa \cong A^{n-1} \oplus \bb \iff \aa \sim \bb$.
+			\item $\forall S \subset A$ $S^{-1}A \otimes_A M \cong S^{-1}M$.
+		\end{itemize}
+	\end{prop}
+
+	\begin{thm}
+		Let $A \subset K$ be Dedekind, $L \vert K$ finite field extension and 
+		$B$ the integral closure of $A$ in $L$. Assume that $B \cong A^n$ 
+		and that $\forall \pp \subset A$ $A/\pp$ is perfect. Let 
+		$\BB$ be a basis of $B$ as an $A$-module.
+		Then $(\Delta_{L \vert K}) = \prod_{i=1}^{n} \pp_i^{e_i}$. Then 
+		$\pp \subset A$ is ramified $\iff$ $\pp$ is one of the $\pp_i$.
+	\end{thm}
+
+	\begin{cor}{}{}
+		Let $K \vert \Q$ be finite. Then there are only finitely many primes
+		dividing $\Delta_{K \vert \Q}$, meaning that only finitely many 
+		primes ramify.
+	\end{cor}
+
+	\section{Norm of an ideal}
+
+	\begin{Def}{}{}
+		Let $L \vert K$ a finite field extension and $\qq \subset \OL$. 
+		Then $\pp = \OK \cap \qq$ is also prime. Let $[\OL/\qq:\OK/\pp] = f$. 
+		Then the define the \emph{norm} of $\qq$ by $\Nm(\qq) = \qq^f$.
+		Define $\Nm(\prod_{i} \qq_i^{e_i}) = \prod_{i} \Nm(\qq_i)^{e_i}$.
+	\end{Def}
+	\begin{prop}{}{}
+		\begin{itemize}
+			\item $\aa \subset \OK$ then $\Nm(\aa^e) = \aa^n$.
+			\item $L \vert K$ Galois, then $\Nm(\aa) = \prod_{\sigma \in G} \sigma(\qq)$.
+			\item $\Nm_{M \vert K} = \Nm_{L \vert K} \circ \Nm_{M \vert L}$ for a 
+				tower $K \to L \to M$ of fields.
+			\item $b \in \OL$ then $\Nm((b)) = (\Nm(b))$.
+		\end{itemize}
+	\end{prop}
+
+	\section{Latices}	
+
+	\begin{Def}{Latice}{}
+		Let $V \cong \R^n$ be a Euclidean vector space $(V, \langle \cdot \rangle)$.
+		A subgroup $\Lambda \subset V$ is called a \emph{latice} if 
+		\begin{itemize}
+			\item $\Lambda \cong \Z^n$
+			\item $\Lambda$ is spanned by a basis of $V$
+		\end{itemize}
+	\end{Def}
+
+	\begin{ex}
+		$\Z^n \subset \R^n$. If $\BB_lambda = (l_1, \dots, l_n)$ is a latice basis, 
+		then for any other basis $\BB_\Lambda' = A \cdot \BB_\Lambda$ with 
+		$A \in \GL_n(\Z)$ 
+	\end{ex}
+
+	\begin{Def}{}{}
+		Let $\Lambda$ ba lattice. The \emph{covolume} of $\Lambda$ for a basis 
+		$\BB_\Lambda = (l_i)$ is the determinant $\det(G)$ where 
+		$G = (g_{ij})$ with $g_{ij} = \langle l_i, l_j \rangle$.
+	\end{Def}
+
+	\begin{rem}
+		\begin{itemize}
+		\item For a different basis $\BB' = A\BB$ we have $\deg(G') = \det(A^t G A) =
+		\det(A)^2 \det(B)$. 
+		\item $\covol(\Lambda) = \vol(V/\Lambda) = \vol(F)$ where $F = 
+			\{\sum_{i=1}^{n} x_il_i
+		\mid x_i \in [0,1]\} $.
+		\end{itemize}
+	\end{rem}
+
+	\begin{Def}{}{}
+		A subset $K \subset V$ is called 
+		\begin{itemize}
+			\item \emph{central} if $x \in K \iff -x \in K$.
+			\item \emph{convex} if $x,y \in K \implies tx + (1-t)y \in K \forall t \in [0,1]$.
+		\end{itemize}
+	\end{Def}
+
+	\begin{thm}{Minkowskis latice point theorem}{}
+		Let $K \subset V$ be a compact, convex and central subset such that 
+		$\mu(K) \geq 2^n\mu(F_\Lambda)$. Then $K$ contains a non-zero latice point of 
+		$\Lambda$.
+	\end{thm}
+
+	Let $K \vert \Q$ be a number field of degree $n$. Since the extension 
+	is separable there exists an $\alpha \in K$ with $K = \Q(\alpha)$ 
+	with $f = f_\alpha$ its minimal polynomial.
+	We will construct $V_K \cong \R^n$. For any root $\alpha_i$ of $f$ 
+	we get an embedding $K \to \C$. Let $r$ be the number of 
+	purely real embeddings and $s$ be the number of pairs of non-real 
+	complex embeddings. Then $n = r + 2s$. Let now 
+	$$V_K = \bigoplus_{\sigma_i: K \to \R} \R \bigoplus_{\sigma_i:K \to \C} \C$$
+	Then $\dim_\R V_k = r + 2s = n$. Consider $v \in V_K$ with $v = (x_1, \dots, x_r, 
+	z_1, \dots, z_s)$. Define 
+	$$\norm{v}^2 = \sum_{i=1}^{k} x_i^2 + 2\sum_{i=1}^{s}\norm{z_i}^2$$.
+	Let $\nu:K\to V_K$ be given by $\nu(a)_i = \sigma_i(a)$.
+	\begin{thm}{}{}
+		$\nu(\OK)$ is a lattice in $V_K$ of covolume $2^{-s}\sqrt{\abs{\Delta_K}}$.
+	\end{thm}
+
+	\begin{thm}{}{}
+		Let $K \vert \Q$ be finite. Then for any class $[\aa] \in \Cl(\OK)$
+		there exists an ideal $\aa \in [\aa]$ such that
+		\begin{itemize}
+			\item $\aa \subset \OK$.
+			\item $\Nm(\aa) \leq \frac{n!}{n^n} (\frac{4}{\pi})^s \sqrt{\abs{\Delta_K}}$
+		\end{itemize}
+	\end{thm}
+
+	\begin{cor}{}{}
+		$\Cl(\OK)$ is finite.
+	\end{cor}
+
+	\begin{cor}{}{}
+		Let $K \vert \Q$ be a number field of degree $n \geq 2$. Then 
+		$\Delta_K \neq 1$.
+	\end{cor}
+
+	\begin{prop}{}{}
+		\begin{itemize}
+			\item $\covol(\sigma(\Nm(\aa))) \sqrt{\abs{\Delta_K}}$.
+			\item $x_i \in \R_{\geq 0}$
+		\end{itemize}
+	\end{prop}
+
+	\begin{prop}{AM-GM Inequality}{}
+		For $x_i \in \Rgez$ we have 
+		$\sqrt[n]{\prod_{i} x_i} \leq \frac{\sum_{i} x_i}{n}$	
+	\end{prop}
+
+	\begin{proof}
+		WLOG we may assume that $\sum_{i} x_i = 1$. 
+		Let $K := \{x \in \Rgez \mid \sum_{i} x_i = 1\} $.
+		The set is clearly compact. Consider now $f: K \to \R$
+		given by $(x_i) \mapsto \prod_{i} x_i$. Since the function 
+		is continuous, there must a maximum. Then $\nabla f 
+		= (\prod_{i} x_i) (\frac{1}{x_1}, \dots, \frac{1}{x_n})^t$.
+		Let $x$ be the maximum of $f$ and $t \in \R^n$ arbitrary.
+		$f(x + \eps t) = f(x) + \eps t \cdot \nabla F$ for $\eps \to 0$.
+		Thus $t \perp \nabla f(x)$. Choosing $t = (1, -1, 0, \dots, 0)^t$
+		we get $x_1 = x_2$. Similarly $x_1 = \dots = x_n = \frac{1}{n}$.
+		Thus we get $\prod_{i} x_i \leq \frac{1}{n}$.
+	\end{proof}
+
+	$K = K(t) := \{x \in V_K \mid \sum_{i=1}^{r} \abs{x_i} + 
+	2\sum_{i=1}^{s} \norm{x_{r+1}}\leq t\} $. Then $K$ is closed.
+	Furtehrmore $\vol(K(t)) = t^n \vol(K(1))$.
+
+	\begin{prop}{}{}
+		$\vol K(1) = \frac{2^r(\frac{\pi}{2})^2}{n!}$.
+	\end{prop}
+
+	\begin{thm}{}{}
+		For anny class $\eta \in \Cl(\OK)$ there exists a non-fractional ideal
+		$\aa \in \eta$ with $\Nm(\aa) \leq \frac{n!}{n^n}(\frac{4}{\pi})^s
+		\sqrt{\abs{\Delta_K}}$. 
+	\end{thm}
+
+	\begin{thm}{}{}
+		A subgroup $\Gamma \subset V$ is discrete $\iff$ $\Gamma$ is a lattice.
+	\end{thm}
+
+	\section{Unit theorem}
+	
+	Main result to be proved:
+	\begin{thm}{Unit theorem}{}
+		Let $K \vert \Q$ be finite of degree $n = r + 2s$. Then $u_K = \OK^* 
+		= \mu(K) \oplus \Z^{r+s-1}$ where $\mu(K) = \{\lambda \in K 
+		\mid \exists n(\lambda) : \lambda^{n(\lambda)} = 1\} $.
+	\end{thm}
+
+	\begin{ex}
+		$\mu(\Q(i)) = \gen{i}$.
+	\end{ex}
+
+	\begin{Lemma}{Easy finiteness lemma}{}
+		Let $M \in \R$ and $m \in \N$. Then 
+		$$\card {\{z \in \C \mid \text{ integral over } \Z; \deg(z) \leq m 
+		; \norm{\sigma_i z} \leq M \forall  i\}} < \infty$$
+	\end{Lemma}
+
+	\begin{prop}{}{}
+		LEt $z \in K^*$. Then we have 
+		$z \in \mu(K) \iff \norm{\sigma(z)} = 1 \forall \sigma: K \to \C$
+	\end{prop}
+
+	\begin{rem}
+		$\mu(K) \subset U_K = \OK^* \subset \OK$ 
+	\end{rem}
+
+	\begin{thm}{}{}
+		$\rank U_K = r+s-1$. In particular $U_K \cong \mu(K) \oplus \Z^{r+s-1}$.
+	\end{thm}
+	
+	\section{Regulator}
+
+	Let $K \vert \Q$ be a number field. Then $\OK^* = \Z/(m) \oplus \Z^{r+s-1}$. 
+	We can embed $L: \OK \to \R^{r+s}$ by $L(x) = (\log(\abs{\sigma_1(x)}), 
+	\dots, \log(\norm{\sigma_{r+s}(x)}^2))$ .The image $\im L$ is a lattice in 
+	$H = ((1, \dots, 1)^t)^\perp$.
+
+	\begin{Def}{Regulator}{}
+		The \emph{regulator} $R_K$ of $K$ is 
+		$$R_K = \frac{1}{\sqrt{r+s}} \cdot \covol((L(\OK^*) \subset H))$$
+	\end{Def}
+
+	Let $v = \frac{1}{\sqrt{r+s}} (1, \dots, 1)^t$, which is of norm $1$. 
+	Then $R_K = \covol(\Lambda = (L(\eps_1), \dots, L(\eps_{r+s-1}), v))$
+
+
+	\begin{prop}{}{}
+		$R_K = \abs{\det (M_{ij})}$ with $(M_{ij}) = (L(\eps_1), \dots, v)$
+	\end{prop}
+
+	\begin{cor}{}{}
+		$R_K = \abs{\det((L(\eps_1), \dots, L(\eps_{r+s-1})))}$
+	\end{cor}
+
+	\begin{ex}
+		Let $K = \Q[\sqrt{d}]$ and $\eps = a+b\sqrt{d}$ be a generator of $U_K$.
+		$R_K = \log\abs{z}$.
+	\end{ex}
+
+	\section{Dedekind zeta Function}
+
+	\begin{Def}{}{}
+	Let $K \vert \Q$ be a number field of degree $n = r + 2s$. 
+	Let $\sigma_i, \dots, \sigma_{r+s}$ be the embeddings of $K$ in $\C$,
+	$h := \Cl(\OK)$ and $\R_K$ the regulator of $K$. The \emph{Dirichlet zeta
+	function} is defined by 
+	$$\zeta_K (s) = \sum_{0 \neq \aa \subset \OK} \frac{1}{\Nm(\aa)^s}$$
+	\end{Def}
+	
+
+	\begin{rem}
+		For $K = \Q$ the function is well defined for $s > 1$ (even for 
+		$s \in \C, \Re(s) > 1$, not relevant here though). Note that the function
+		$x \mapsto x^{-s}$ is strictly decreasing. Thus $\int_{n-1}^{n} 
+		x^{-s}\; \mathrm{d}x  > \frac{1}{n^s} > \int_{n}^{n+1} x^{-s}\; \mathrm{d}x  
+		$. Hence $1+ \int_{1}^{\infty} x^{-s}\; \mathrm{d}x > \zeta_\Q(s) > 
+		\int_{1}^{\infty} x^{-s} \; \mathrm{d}x$. Therefore $s > (s-1)\zeta_\Q(s) 
+		> 1$. Thus 
+		$$\lim_{s \to 1^+} \zeta_{\Q}(s)(s-1) = 1$$.
+	\end{rem}
+
+	\begin{thm}{Dream}{}
+		$\lim_{s \to 1^+} \zeta_K(s)(s-1) = h_K \cdot c_K$ for some easy function 
+		$c_K$ depending on $r, s, R_K$.
+	\end{thm}
+
+	\underline{$1^\circ$ trick}: 
+	\begin{prop}{}{}
+	$$\zeta_K(s) = \sum_{c \in \Cl(\OK)} 
+	\sum_{[\aa] = c} \frac{1}{\Nm(\aa)^s} =: \sum_{c\in \Cl(\OK)} \zeta_c(s)$$.
+	\end{prop}
+
+	\begin{Def}{Fundamental domain}{}
+		Let $l^* = (1,\dots,1,2,\dots,2)$ ($r$ and $s$ times respectively). 
+		Then $l^*, L(\eps_1), \dots, L(\eps_{r+s-1})$ is a basis of $\R^{r+s}$
+		for $\eps_i$ being a list of generators of $U_K$. Then the 
+		\emph{fundamental doamin} $X \subset \R^n$ is defined by 
+		\begin{align*}
+			X = \{x \in \R^n \mid & 0 \leq \arg(x_1) \leq \frac{2\pi}{m}; \\
+		 & \Nm(x) \neq 0; \\ 
+		 & L(x) = \lambda l^* + \sum_{i=1}^{r+s-1} \lambda_i L(\eps_i)
+		\forall \lambda \in \Rgez, \lambda_i \in [0,1) \}
+		\end{align*}
+	\end{Def}
+
+	\begin{prop}{}{}
+		Let $c \in \Cl(\OK)$ and $\aa'$ be a non-fractional ideal such that 
+		$c^{-1} = [\aa']$. Then 
+		\begin{align*}
+			\zeta_C = \Norm(a')^s \sum_{(a) \subset \aa} \frac{1}{\abs{\Norm(a)}^s}
+			= \Norm(\aa')^s \sum_{a \in \aa'; \sigma(a) \in X} \frac{1}{\abs{\Norm
+			(a)}^s}
+		\end{align*}
+	\end{prop}
+
+	Define 
+	$S := \{x \in X \mid \Norm(x) = 1\} $ and 
+	$T := \{x \in X \mid \Norm(x) \leq 1\} $.
+
+	\begin{Lemma}{}{}
+		$S$ is bounded.
+	\end{Lemma}
+
+	\begin{Lemma}{}{}
+		$T$ is bounded.
+	\end{Lemma}
+
+	\begin{Lemma}{}{}
+		Let $u \in U_K$ and $m_u: \R^n \to \R^n$ given by 
+		$(x_1, \dots, z_{r+s})^t \mapsto (\sigma_1(u)x_1, \dots, 
+		\sigma_{r+s}(u)z_{r+s})^t$. Then $m_u$ is volume preserving.
+	\end{Lemma}
+
+	\newcommand{\Tall}{T_{\text{all}}}
+
+	Let $\mu(K) = \gen{\eta}$. Define $T_K := \eta^k T$ for $k = 0, \dots, m-1$.
+	Also define $T_{\text{all}} = \bigcup_{k=0}^{m-1} T_K$. Then clearly 
+	$\mu(\Tall) = m \mu(T)$. Let $\bar{T} \subset \Tall$ such that 
+	$x_i > 0$ for $i = 1, \dots, r$. Then 
+	$$\mu(\bar{T}) = 2^{-r} \mu(\Tall) = \frac{m}{2^r}\mu(T)$$
+
+	\begin{prop}{}{}
+		$\vol(T) = \frac{R_K \cdot \pi^s \cdot 2^r}{m}$
+	\end{prop}
+	
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
+
+
+

@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Integral elements}{1}{section.1}%
+\contentsline {section}{\numberline {2}Free A-modules}{3}{section.2}%
+\contentsline {section}{\numberline {3}Bilinear forms}{3}{section.3}%
+\contentsline {section}{\numberline {4}Dedekind rings}{7}{section.4}%
+\contentsline {section}{\numberline {5}Valuations and DVR's}{8}{section.5}%
+\contentsline {section}{\numberline {6}Projective modules over Dedekind rings}{9}{section.6}%
+\contentsline {section}{\numberline {7}Ideal class group}{10}{section.7}%
+\contentsline {section}{\numberline {8}Norm of an ideal}{11}{section.8}%
+\contentsline {section}{\numberline {9}Latices}{11}{section.9}%
+\contentsline {section}{\numberline {10}Unit theorem}{14}{section.10}%
+\contentsline {section}{\numberline {11}Regulator}{14}{section.11}%
+\contentsline {section}{\numberline {12}Dedekind zeta Function}{15}{section.12}%

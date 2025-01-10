@@ -1,9 +1,10 @@
 \usepackage{amsthm,amsmath, amsfonts}
-\usepackage[ngerman]{babel}
+%\usepackage[ngerman]{babel}
 \usepackage{tcolorbox}
 \usepackage{hyperref, cleveref}
 \usepackage{xcolor, thmtools}
 \usepackage{enumitem}
+%\usepackage{marginnote}
 \usepackage{geometry}
 
 
@@ -15,7 +16,7 @@
 	top=2cm,
 	bottom=3cm,
 	marginparwidth=3cm,
-	marginparsep=0.7cm,
+	marginparsep=0.8cm,
 	a4paper
 }
 
@@ -28,23 +29,33 @@
 \definecolor{dblue}{RGB}{1,31,75}
 
 
-%--General--
+%%%%%%%%%%%%%
+%% General %%
+%%%%%%%%%%%%%
+
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\HH}{\mathbb{H}}
+\newcommand{\ohne}{\setminus}
 \newcommand{\card}[1]{\operatorname{\#}\left(#1 \right)}
 \renewcommand{\iff}{\Leftrightarrow}
-\newcommand{\ohne}{\setminus}
 \renewcommand{\implies}{\Rightarrow}
 \renewcommand{\tilde}{\widetilde}
 \renewcommand{\bar}{\overline}
 \newcommand{\aufz}[2]{#1_1, \dots, #1_{#2}}
 \newcommand{\calp}{\mathcal{P}}
+\newcommand{\vphi}{\varphi}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\imag}{Im}
 
-%----Category Theory----
+%%%%%%%%%%%%%%%%%%%%%
+%% Category Theory %%
+%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareMathOperator{\Ob}{Ob}
 \newcommand{\calc}{\mathcal{C}}
@@ -53,34 +64,45 @@
 \DeclareMathOperator{\CVec}{\mathbf{Vec}}
 \DeclareMathOperator{\Grp}{\mathbf{Grp}}
 
-%--Algebra--
+%%%%%%%%%%%%%
+%% Algebra %%
+%%%%%%%%%%%%%
 
-\DeclareMathOperator{\grad}{Grad}
+\DeclareMathOperator{\Grad}{Grad}
 \DeclareMathOperator{\minpol}{minpol}
 \DeclareMathOperator{\charpol}{charpol}
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\im}{im}
-\DeclareMathOperator{\bild}{Bild}
+\DeclareMathOperator{\Bild}{Bild}
 \DeclareMathOperator{\ggT}{ggT}
 \DeclareMathOperator{\kgv}{kgV}
-\DeclareMathOperator{\gal}{Gal}
-\DeclareMathOperator{\aut}{Aut}
-\DeclareMathOperator{\bij}{Bij}
-\DeclareMathOperator{\abb}{Abb}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Bij}{Bij}
+\DeclareMathOperator{\Abb}{Abb}
+\DeclareMathOperator{\Mod}{Mod}
+\DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\F}{\mathbb{F}}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Cl}{Cl}
 \DeclareMathOperator{\Span}{Span}
 \DeclareMathOperator{\spec}{Spec}
 \DeclareMathOperator{\lok}{Lok}
 \DeclareMathOperator{\OK}{\mathcal{O}_K}
+\DeclareMathOperator{\OL}{\mathcal{O}_K}
 \DeclareMathOperator{\einmat}{\mathbb{E}}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Orth}{O}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\rank}{rank}
 \newcommand{\pp}{\mathfrak{p}}
 \renewcommand{\aa}{\mathfrak{a}}
 \newcommand{\bb}{\mathfrak{b}}
+\newcommand{\qq}{\mathfrak{q}}
 \newcommand{\cc}{\mathfrak{c}}
 \newcommand{\mm}{\mathfrak{m}}
-\newcommand{\qq}{\mathfrak{q}}
 \newcommand{\zpz}{\Z / p\Z}
 \newcommand{\zmz}{\Z / m\Z}
 \newcommand{\znz}{\Z / n\Z}
@@ -94,27 +116,35 @@
 \newcommand{\kx}{k[x]}
 \newcommand{\kyn}[1]{k[y_1, \dots, y_{#1}]}
 \newcommand{\ky}{k[y]}
+\newcommand{\gen}[1]{\langle #1 \rangle}
 \newcommand{\epim}{\twoheadrightarrow}
 \newcommand{\monom}{\hookrightarrow}
 \newcommand{\nsub}{\vartriangleright}
 \newcommand{\nsubl}{\vartriangleleft}
-\newcommand{\PR}{\mathbb{P}^n(\R)}
-\newcommand{\PC}{\mathbb{P}^n(\C)}
 
-%--Analysis--
+%%%%%%%%%%%%%%
+%% Analysis %%
+%%%%%%%%%%%%%%
 
 \newcommand{\eps}{\varepsilon}
-\renewcommand{\phi}{\varphi}
-\DeclareMathOperator{\re}{Re}
-\DeclareMathOperator{\imag}{Im}
+\newcommand{\veps}{\epsilon}
 \DeclareMathOperator{\holo}{\mathcal{O}}
+\DeclareMathOperator{\vol}{vol}
 
-%--Theorems
+%%%%%%%%%%%%%%
+%% Theorems %%
+%%%%%%%%%%%%%%
+
+%% Boxed Theorems %%
 \tcbuselibrary{theorems}
 \newtcbtheorem[number within=section, crefname={\mathrm{Satz}}{Satz}]{satz}{Satz}
 {before skip=2em, after skip=2em, colback=red!5!white, colframe=red!50!black}{S}
+\newtcbtheorem[number within=section, crefname={\mathrm{Theorem}}{Theorem}]{thm}{Theorem}
+{before skip=2em, after skip=2em, colback=red!5!white, colframe=red!50!black}{S}
 \newtcbtheorem[number within=section, crefname={\mathrm{Korollar}}{Korollar}]{kor}
 {Korollar}{before skip=2em, after skip=2em}{K}
+\newtcbtheorem[number within=section, crefname={\mathrm{Corollary}}{Corollary}]{cor}
+{Corollary}{before skip=2em, after skip=2em}{C}
 \newtcbtheorem[number within=section, crefname={\mathrm{Definition}}{Definition}]{Def}
 {Definition}{before skip=2em, after skip=2em, colback=green!5!white, colframe=green!50!black}{D}
 \newtcbtheorem[number within=section, crefname={\mathrm{Hilfssatz}}{Hilfssatz}]{hilfs}
@@ -127,11 +157,9 @@
 \newtcbtheorem[number within=section, crefname={\mathrm{Proposition}}{Proposition}]
 {prop}{Proposition}{before skip=2em, after skip=2em, colback=yellow!5!white, colframe=brown!50!black}{P}
 
-\newtcbtheorem[number within=section, crefname={\mathrm{Regel}}{Regel}]{regel}{Regel}
-{before skip=2em, after skip=2em, colback=purple!5!white, colframe=purple!50!black}{S}
-
+%% Normal Theorems %%
 \declaretheoremstyle[
-	headfont=\bfseries,
+	headfont=\normalfont,
 	spaceabove=1em,
 	spacebelow=1em
 ]{beisp}
@@ -151,6 +179,16 @@
 	numberwithin=section
 ]{bsp}
 \declaretheorem[
+	style=beisp,
+	name=Example,
+	numberwithin=section
+]{ex}
+\declaretheorem[
+	style=beisp,
+	name=Remark,
+	numberwithin=section
+]{rem}
+\declaretheorem[
 	style=beme,
 	name=Bemerkung,
 	numberwithin=section
@@ -159,6 +197,5 @@
 	style=aufg,
 	name=Aufgabe,
 ]{Aufgabe}
-
 
 
