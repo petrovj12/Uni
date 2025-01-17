@@ -16,6 +16,7 @@
 \DeclareMathOperator{\disc}{disc}
 \DeclareMathOperator{\covol}{covol}
 \DeclareMathOperator{\Rgez}{\R_{\geq 0}}
+\DeclareMathOperator{\Rgz}{\R_{> 0}}
 \DeclareMathOperator{\Norm}{N}
 
 \begin{document}
@@ -825,8 +826,87 @@ Thus $\Delta(f) \in i\R$.
 	\end{prop}
 	
 
+	\section{Analytic class number formula}
 
+	\begin{thm}{Dirichlet Principle}{}
+		Let $X \subset \R^n$ be a cone, and $\Lambda \subset \R^n$ a lattice of 
+		covolume $\mu$. Let $F: X \to \Rgz$ be a homogeneous function of degree $n$, i.e. 
+		$F(rx) = r^n F(x)$. Suppose $T$ is bounded of volume $V$. Then is 
+		$$ \zeta(s) := \sum_{\lambda \in X \cap \Lambda} \frac{1}{F(\lambda)^s}$$
+		well-defined for $s > 1$ and $\lim_{s \to 1^+} (s-1)\zeta(s) = \frac{V}{\mu}$.
+	\end{thm}
+
+	Applying the theorem above for $\zeta_K$ we get the analytic class number formula:
+	$$\lim_{s \to 1^+} \zeta_K(s)(s-1) = \frac{2^{r+2}\pi^s h_K R_K}{m \sqrt{\abs{D}}}$$
+
+	\begin{thm}{Euler's identity}{}
+		$$\zeta_K(s) = \prod_{0 \neq \pp \in \Spec\OK} \frac{1}{1-\frac{1}{\Norm(\pp)^s}}$$	
+	\end{thm}
 	
+	\subsection{Characters}
+
+	\begin{Def}{Characters}{}
+		A \emph{character} is a group homomorphism $G \to \C^*$ for some group $G$.
+	\end{Def}
+
+	\begin{Def}{Dual group}{}
+		Let $G$ be a group. Then $\widehat G := \Hom(G, \C^*)$ is called the \emph{dual group} 
+		to $G$.	
+	\end{Def}
+
+	\begin{rem}
+		Let $G$ be a finite abelian group. Then $\card G = \card{\widehat G}$ and there is a natural 
+		isomorphism $G \cong \widehat G$.
+	\end{rem}
+
+	\begin{Def}{Character modulo $m$}{}
+		A \emph{character modulo $m$} is a map $\chi: (\Z / (m))^* \to \C^*$.
+	\end{Def}
+
+	\begin{rem}
+		A character modulo $m$ $\chi$ can be extended to $\Z \to \Z / (m) \to \C^* \cup \{0\} = \C$
+		by 
+		$$\tilde\chi(a) = \begin{cases}
+			\chi([a]) & (a, m) = 1 \\
+			0 & \text{else}
+		\end{cases}$$
+	\end{rem}
+
+	\begin{Def}{}{}
+		\begin{itemize}
+		\item 
+		A character modulo $m$ is \emph{primitive} if for each divisor $m'$ of $m$, if 
+		$\chi$ factorizes to a $\chi': \Z / (m') \to \C$, then $m' = m$.
+		\item 
+		A character is called \emph{quadratic} if $\chi = \chi^{-1} \iff \chi^2 = 1 
+		\iff (Z/(m))^* \to \{\pm 1\} $. 
+		\end{itemize}
+	\end{Def}
+
+	\begin{ex}
+		Cosider the case where $m = 8$.	We have $(\Z / 8)^* = V_4 = \gen{-1, 3}$. Then 
+		$$\chi_8 = \begin{cases} -1 \mapsto 1 \\ 
+							3 \mapsto -1
+				   \end{cases}$$
+		is primitive.
+		$$\chi_4 = \begin{cases} -1 \mapsto -1 \\ 
+							3 \mapsto -1
+				   \end{cases}$$
+		is however not primitive.
+		$\chi_8 \cdot \chi_4$ is primitive.
+	\end{ex}
+
+	\begin{thm}{}{}
+		Let $K = \Q[\sqrt{d}]$ be of discriminant $D$. Then there exists a primitive quadratic 
+		character $\chi_K = \chi : \Z \to \{\pm 1, 0\} $ modulo $\abs{D}$ such that 
+		for $p$ a prime in $\Z$ we have: 
+		\begin{itemize}
+			\item $(p)$ is prime in $\OK \iff \chi(p) = -1$
+			\item $(p) = \pp_1 \pp_2, \pp_1 \neq \pp_2$ in $\OK \iff \chi(p) = 1$
+			\item $(p) = \pp^2$ in $\OK \iff \chi(p) = 0$.
+		\end{itemize}
+	\end{thm}
+
 	
 
 
