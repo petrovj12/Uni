@@ -10,3 +10,5 @@
 \contentsline {section}{\numberline {10}Unit theorem}{14}{section.10}%
 \contentsline {section}{\numberline {11}Regulator}{14}{section.11}%
 \contentsline {section}{\numberline {12}Dedekind zeta Function}{15}{section.12}%
+\contentsline {section}{\numberline {13}Analytic class number formula}{17}{section.13}%
+\contentsline {subsection}{\numberline {13.1}Characters}{18}{subsection.13.1}%

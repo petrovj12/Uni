@@ -3,6 +3,7 @@
 \input{preamble.tex}
 
 \usepackage{tikz-cd}
+%\usepackage{nath}
 
 \renewcommand{\phi}{\varphi}
 \newcommand{\BB}{\mathscr{B}}
@@ -18,6 +19,7 @@
 \DeclareMathOperator{\Rgez}{\R_{\geq 0}}
 \DeclareMathOperator{\Rgz}{\R_{> 0}}
 \DeclareMathOperator{\Norm}{N}
+\renewcommand{\div}{\vert}
 
 \begin{document}
 
@@ -907,10 +909,56 @@ Thus $\Delta(f) \in i\R$.
 		\end{itemize}
 	\end{thm}
 
-	
+	\begin{rem} \
+		\begin{itemize}
+		\item If $(p) = \pp_1 \pp_2$ with $\pp_1 \neq \pp_2$
+		$$\prod_{p \div \Nm(\pp)} \left(1-\frac{1}{\Nm(\pp)^s}\right)= 
+		\left(1-\frac{1}{p^s}\right)\left( 1- \frac{1}{p^s}\right)
+		 =\left(1-\frac{1}{p^s}\right)
+		 \left(1-\frac{\chi(p)}{p^s}\right) $$
 
+		\item If $(p)$ is prime
+		$$\prod_{p \div \Nm(\pp)} \left(1-\frac{1}{\Nm(\pp)^s}\right)= 
+		\left(1-\frac{1}{p^s}\right)\left( 1+ \frac{1}{p^s}\right)
+		=\left(1-\frac{1}{p^{s}}\right)
+		 \left(1-\frac{\chi(p)}{p^s}\right) $$
 
+		\item If $(p) = \pp^2$ 
+		$$\prod_{p \div \Nm(\pp)} \left(1-\frac{1}{\Nm(\pp)^s}\right)= 
+		1-\frac{1}{p^s}=\left(1-\frac{1}{p^{s}}\right)
+		 \left(1-\frac{\chi(p)}{p^s}\right) $$
+		\end{itemize}
 
+		Hence we have
+		$$\zeta_K(s) = \prod_{\pp \in \Spec \OK} (1-\frac{1}{p^s})
+		\prod_{\pp \in \Spec \OK} \left(1-\frac{\chi(p)}{p^s}\right)
+		 =: \zeta_\Q(s) L(s, \chi)$$
+		 For $L(s, \chi)$ we have:
+		$$L(s, \chi) = \sum_{i=0}^{\infty} \frac{\chi(n)}{n^s}$ $
+	\end{rem}
+
+	\begin{Lemma}{}{}
+		For any $\sigma > 0$ the sequence of partial sums of 
+		$L(s, \chi)$ converges uniformly on $[\sigma, \infty)$. 
+		Hence $L(s, \chi)$ is continuous on $(0, \infty)$ 
+	\end{Lemma}
+
+	\begin{rem}
+		We thus have 
+		\begin{align*}
+						\lim_{s \to 1^+} \zeta_K(s) &= L(1, \chi) \\
+						\implies L(1,\chi) &= \begin{cases}
+										\frac{2\ln(\eps)h}{\sqrt{\abs{D}}} & 
+										D > 0\\
+										\frac{2\pi h}{m\sqrt{\abs{D}}} & D < 0\\
+			\end{cases}	
+		\end{align*}
+	\end{rem}
+
+	\begin{rem}{}{}
+		The above formula can be used to calculate the 
+		class number of a quadratic field:
+	\end{rem}
 
 
 
